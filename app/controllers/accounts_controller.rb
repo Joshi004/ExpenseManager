@@ -7,16 +7,15 @@ class AccountsController < ApplicationController
 		params.require(:account).permit(:account_id, :name, :details,:initial_amount,:created_at,:updated_at)
 	end
 
+	def getAccounts()
+		render json: Account.all()
+	end
 
 	def createAccount()
-		p "*************************************************************************"
-		# params.permit([:name])
-		p params['name'] 
+		print 'Create Account Invoked for account :- ',params['name']
 		@account = Account.new(account_params)
 		Account.create(account_params())
-		# puts @account
-		
-		redirect_to @account
+		render json: @account
 	end
 
 

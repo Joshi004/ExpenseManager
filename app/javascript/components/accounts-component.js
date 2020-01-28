@@ -21,6 +21,28 @@ class AccountComponent extends Component{
         });
     }
 
+
+    getAccounts(){
+        console.log("Get All Account Called")
+        fetch(url.get_accounts,{
+            method:'get',
+        })
+        .then((response) => {
+          return response.json();
+        })
+        .then((myJson) => {
+          console.log('All accounts are : ',myJson);
+        }).catch((e)=>{
+            console.log("Error encountered while fetching",e)
+        });
+
+    }
+
+    componentDidMount(){
+        console.log('Components did mount called')
+        this.getAccounts()
+    }
+
     render(){
         return(<div className='mainDiv'>
                 <div>Choose The Account or create One</div>
