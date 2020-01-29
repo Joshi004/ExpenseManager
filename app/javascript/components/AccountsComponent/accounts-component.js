@@ -4,25 +4,10 @@ import PropTypes from 'prop-types'
 import  '../emConstants'
 import './accounts-component.css';
 import ListAccounts from './list-accounts/list-account'
+import CreateAccount from './create-account/create-account';
 class AccountComponent extends Component{
     allAcounts = []
     state={}
-    createAccount(){
-        console.log("Create Account Called")
-        fetch(url.create_account,{
-            method:'post',
-            body:JSON.stringify({account_id:'naresh_01',name:'Naresh',details:'Accout for month of january',initial_amount:10000,created_at:"",updated_at:""}),
-            headers:{'Content-type' :'application/json'}
-        })
-        .then((response) => {
-          return response.json();
-        })
-        .then((myJson) => {
-        }).catch((e)=>{
-            console.log("Error encountered while fetching",e)
-        });
-    }
-
 
     getAccounts(){
         console.log("Get All Account Called")
@@ -49,9 +34,21 @@ class AccountComponent extends Component{
     render(){
         return(<div className='mainDiv container-fluid'>
                 <div className='header'>Choose an account or create One</div>
+               <div className='tabsContainer'>
+                    <ul className="tabsUl nav nav-tabs">
+                        <li className='tabsLi'>
+                            <button className='tabBtn btn btn-secondary'onClick={this.createAccount} >List Accounts</button> 
+                        </li>
+                        <li className="tabsLi active">
+                            <button className='tabBtn btn btn-secondary'onClick={this.createAccount} >New Account</button> 
+                        </li>
+                       
+                    </ul>
+               </div>
                 
-                <ListAccounts accounts={this.state.allAcounts}></ListAccounts>
-                <button className='btn btn-primary'onClick={this.createAccount} >Create Account</button>    
+                <ListAccounts getAccounts = {this.getAccounts} accounts={this.state.allAcounts}></ListAccounts>
+                <CreateAccount></CreateAccount>
+                   
         </div>)
     }
 }
