@@ -1,9 +1,12 @@
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import  '../components/emConstants'
-// import './accounts-component.css';
+import  '../emConstants'
+import './accounts-component.css';
+import ListAccounts from './list-accounts/list-account'
 class AccountComponent extends Component{
+    allAcounts = []
+    state={}
     createAccount(){
         console.log("Create Account Called")
         fetch(url.create_account,{
@@ -15,7 +18,6 @@ class AccountComponent extends Component{
           return response.json();
         })
         .then((myJson) => {
-          console.log(myJson);
         }).catch((e)=>{
             console.log("Error encountered while fetching",e)
         });
@@ -31,7 +33,8 @@ class AccountComponent extends Component{
           return response.json();
         })
         .then((myJson) => {
-          console.log('All accounts are : ',myJson);
+          this.setState({allAcounts:myJson})
+          console.log('Fetched all data ',this.state.allAcounts);
         }).catch((e)=>{
             console.log("Error encountered while fetching",e)
         });
@@ -44,11 +47,11 @@ class AccountComponent extends Component{
     }
 
     render(){
-        return(<div className='mainDiv'>
-                <div>Choose The Account or create One</div>
-                <div>
-                <button onClick={this.createAccount} >Create Account</button>
-                </div>
+        return(<div className='mainDiv container-fluid'>
+                <div className='header'>Choose an account or create One</div>
+                
+                <ListAccounts accounts={this.state.allAcounts}></ListAccounts>
+                <button className='btn btn-primary'onClick={this.createAccount} >Create Account</button>    
         </div>)
     }
 }

@@ -8,7 +8,7 @@ class AccountsController < ApplicationController
 	end
 
 	def getAccounts()
-		render json: Account.all()
+		render json: Account.limit(5)
 	end
 
 	def createAccount()
