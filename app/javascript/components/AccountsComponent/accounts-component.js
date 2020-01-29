@@ -9,6 +9,10 @@ class AccountComponent extends Component{
     allAcounts = []
     state={}
 
+    toggleAccountView(value){
+        this.setState({listView:value})
+    }
+
     getAccounts(){
         console.log("Get All Account Called")
         fetch(url.get_accounts,{
@@ -37,17 +41,14 @@ class AccountComponent extends Component{
                <div className='tabsContainer'>
                     <ul className="tabsUl nav nav-tabs">
                         <li className="tabsLi active">
-                            <button className='tabBtn btn btn-secondary'onClick={this.createAccount} >New Account</button> 
+                            <button className='tabBtn btn btn-secondary'onClick={()=>this.toggleAccountView(false)} >New Account</button> 
                         </li>
                         <li className='tabsLi'>
-                            <button className='tabBtn btn btn-secondary'onClick={this.createAccount} >List Accounts</button> 
+                            <button className='tabBtn btn btn-secondary'onClick={()=>this.toggleAccountView(true)} >List Accounts</button> 
                         </li>
                     </ul>
                </div>
-               <CreateAccount></CreateAccount>
-                <ListAccounts getAccounts = {this.getAccounts} accounts={this.state.allAcounts}></ListAccounts>
-               
-                   
+               { this.state.listView?<ListAccounts getAccounts = {this.getAccounts} accounts={this.state.allAcounts}></ListAccounts> : <CreateAccount></CreateAccount>}
         </div>)
     }
 }
