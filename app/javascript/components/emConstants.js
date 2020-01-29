@@ -6,7 +6,6 @@ url={
 }
 
 accountTableMap = [
-    { field : 'account_id', label:'Account ID',toDisplay:true},
     { field : 'name', label:'Name',toDisplay:true},
     { field : 'details', label:'Details',toDisplay:true},
     { field : 'initial_amount', label:'Initial Amount',toDisplay:true},

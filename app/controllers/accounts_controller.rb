@@ -8,13 +8,18 @@ class AccountsController < ApplicationController
 	end
 
 	def getAccounts()
-		render json: Account.limit(5)
+		render json: Account.all
 	end
 
 	def createAccount()
 		print 'Create Account Invoked for account :- ',params['name']
 		@account = Account.new(account_params)
-		Account.create(account_params())
+		begin
+			Account.create(account_params())
+		rescue
+
+			render json: {error: 'There was an error saving the account'}
+		end
 		render json: @account
 	end
 

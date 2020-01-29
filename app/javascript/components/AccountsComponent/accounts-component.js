@@ -15,7 +15,7 @@ class AccountComponent extends Component{
             method:'get',
         })
         .then((response) => {
-          return response.json();
+                return response.json();
         })
         .then((myJson) => {
           this.setState({allAcounts:myJson})
@@ -36,18 +36,17 @@ class AccountComponent extends Component{
                 <div className='header'>Choose an account or create One</div>
                <div className='tabsContainer'>
                     <ul className="tabsUl nav nav-tabs">
-                        <li className='tabsLi'>
-                            <button className='tabBtn btn btn-secondary'onClick={this.createAccount} >List Accounts</button> 
-                        </li>
                         <li className="tabsLi active">
                             <button className='tabBtn btn btn-secondary'onClick={this.createAccount} >New Account</button> 
                         </li>
-                       
+                        <li className='tabsLi'>
+                            <button className='tabBtn btn btn-secondary'onClick={this.createAccount} >List Accounts</button> 
+                        </li>
                     </ul>
                </div>
-                
+               <CreateAccount></CreateAccount>
                 <ListAccounts getAccounts = {this.getAccounts} accounts={this.state.allAcounts}></ListAccounts>
-                <CreateAccount></CreateAccount>
+               
                    
         </div>)
     }

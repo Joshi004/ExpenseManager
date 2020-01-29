@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import  '../../emConstants'
 import './create-account.css'
+import CustomModel from '../../CommonComponents/modal-component'
 class CreateAccount extends Component{
 
     constructor(props){
@@ -30,13 +31,15 @@ class CreateAccount extends Component{
         })
         .then((response) => {
           
-                this.props.getAccounts()
+                // this.props.getAccounts()
             
           return response.json();
         })
         .then((myJson) => {
         }).catch((e)=>{
             console.log("Error encountered while fetching",e)
+            // const baseElem = document.getElementsByClassName('container')[0]
+            // ReactDOM.render(<CustomModel tabindex='-1' title='Oops' body = 'There was some error'></CustomModel>,baseElem)
         });
     }
 
