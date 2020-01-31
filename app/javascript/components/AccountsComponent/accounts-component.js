@@ -7,7 +7,7 @@ import ListAccounts from './list-accounts/list-account'
 import CreateAccount from './create-account/create-account';
 class AccountComponent extends Component{
     allAcounts = []
-    state={}
+    state={listView:true}
 
     toggleAccountView(value){
         this.setState({listView:value})
@@ -15,7 +15,7 @@ class AccountComponent extends Component{
 
     getAccounts(){
         console.log("Get All Account Called")
-        fetch(url.get_accounts,{
+        fetch(urls.get_accounts,{
             method:'get',
         })
         .then((response) => {

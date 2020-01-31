@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200129093753) do
+ActiveRecord::Schema.define(version: 20200130051456) do
 
   create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
@@ -21,4 +21,16 @@ ActiveRecord::Schema.define(version: 20200129093753) do
     t.index ["name"], name: "index_accounts_on_name", unique: true, using: :btree
   end
 
+  create_table "expenses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.float    "amount",          limit: 24
+    t.string   "category"
+    t.text     "description",     limit: 65535
+    t.string   "payement_method"
+    t.integer  "account_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["account_id"], name: "index_expenses_on_account_id", using: :btree
+  end
+
+  add_foreign_key "expenses", "accounts"
 end

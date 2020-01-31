@@ -24,22 +24,18 @@ class CreateAccount extends Component{
 
     createAccount  = ()=>{
         console.log("Create Account Called")
-        fetch(url.create_account,{
+        fetch(urls.create_account,{
             method:'post',
             body:JSON.stringify({account_id:this.state.name+'_01',name:this.state.name, details:this.state.details, initial_amount:this.state.initial_amount, created_at:"",updated_at:""}),
             headers:{'Content-type' :'application/json'}
         })
-        .then((response) => {
-          
-                // this.props.getAccounts()
-            
+        .then((response) => {  
           return response.json();
         })
         .then((myJson) => {
+            location.reload();
         }).catch((e)=>{
             console.log("Error encountered while fetching",e)
-            // const baseElem = document.getElementsByClassName('container')[0]
-            // ReactDOM.render(<CustomModel tabindex='-1' title='Oops' body = 'There was some error'></CustomModel>,baseElem)
         });
     }
 

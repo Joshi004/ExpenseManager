@@ -13,7 +13,6 @@ class ListAccounts extends Component{
     renderTableHeader(){
         return accountTableMap.map(element => {
              return <th key={element.field}>{element.label}</th>
- 
            })
      }
  
