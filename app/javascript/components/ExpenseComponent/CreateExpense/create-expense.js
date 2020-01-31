@@ -75,7 +75,7 @@ class CreateExpenseComponent extends Component{
                 <input className="form-control" type='text' name='account_id' onChange={this.handleInputChange} value={this.state.initial_amount}></input>
             </div>
         </form>
-        <button onClick={this.createExpense} className='btn btn-primary'>Create Expense</button>
+        <button onClick={this.createExpense} className='btn btn-primary'>Record Expense</button>
         </div>)
     }
 }
