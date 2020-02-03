@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 class NavComponent extends Component {
     constructor(props) {
         super(props)
@@ -9,14 +10,17 @@ class NavComponent extends Component {
                 <nav className="navbar navbar-inverse">
                     <div className="container-fluid">
                         <div className="navbar-header">
-                            <a className="navbar-brand" href="#">Expense Manager</a>
+                            <a className="navbar-brand" href="/">Expense Manager</a>
                         </div>
+                    {/* <Router>
                         <ul style={{flexDirection:"row"}} className="nav navbar-nav">
-                            <li className="active"><a href="#">Home | </a></li>
-                            <li><a href="/expense/createExpense"> New Expense | </a></li>
-                            <li><a href="/accounts"> Accounts | </a></li>
-                            <li><a href="#"> {localStorage.selectedAccountName}</a></li>
+                            <li className="active"><Link to="/">Home | </Link></li>
+                            <li><Link to = "/createExpense"> New Expense | </Link></li>
+                            <li><Link to = "/accounts"> Accounts | </Link></li>
+                            <li><Link to="/"> {localStorage.selectedAccountName}</Link></li>
                         </ul>
+                    </Router> */}
+                    
                     </div>
                 </nav>
         )
