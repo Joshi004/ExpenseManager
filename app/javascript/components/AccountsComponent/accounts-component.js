@@ -6,8 +6,11 @@ import './accounts-component.css';
 import ListAccounts from './list-accounts/list-account'
 import CreateAccount from './create-account/create-account';
 class AccountComponent extends Component{
+    constructor(props){
+        super(props)
+        this.state={listView:true}
+    }
     allAcounts = []
-    state={listView:true}
 
     toggleAccountView(value){
         this.setState({listView:value})
@@ -19,10 +22,12 @@ class AccountComponent extends Component{
             method:'get',
         })
         .then((response) => {
+
                 return response.json();
         })
         .then((myJson) => {
           this.setState({allAcounts:myJson})
+          this.props.saveAccounts(myJson)
           console.log('Fetched all data ',this.state.allAcounts);
         }).catch((e)=>{
             console.log("Error encountered while fetching",e)

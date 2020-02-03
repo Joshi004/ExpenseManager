@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 class ExpenseComponent extends Component {
     constructor(props) {
         super(props)
+        this.state = {'allAccounts':this.props.allAccounts}
     }
 
 
@@ -32,7 +33,6 @@ class ExpenseComponent extends Component {
                 <h2>This Is Expenses component</h2>
                 <button className='btn btn-primary' onClick={this.getAllExpenses}>Get All Expenses</button>
                 <span className='glyphicon glyphicon-plus'></span>
-                <Link to="createExpense">Create Expense</Link>
             </div>
         )
     }
