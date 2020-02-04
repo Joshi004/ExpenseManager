@@ -10,7 +10,7 @@ class NavComponent extends Component {
                 <nav className="navbar navbar-inverse">
                     <div className="container-fluid">
                         <div className="navbar-header">
-                            <a className="navbar-brand" href="/">Expense Manager</a>
+                            <a className="navbar-brand">Expense Manager</a>
                         </div>
                     {/* <Router>
                         <ul style={{flexDirection:"row"}} className="nav navbar-nav">

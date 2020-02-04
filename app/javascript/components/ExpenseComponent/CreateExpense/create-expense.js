@@ -11,7 +11,7 @@ class CreateExpenseComponent extends Component {
             category: '',
             description: '',
             payement_method: '',
-            account_id: localStorage.selectedAccountName,
+            account_id: '',
             allAccounts:prop.allAccounts
         }
         console.log('In Create Expense Component props recived are',this.props)
@@ -117,7 +117,6 @@ componentDidMount(){
                     <select onChange={this.handleInputChange} className="form-control" name="account_id">
                         { this.renderDropdown() }
                     </select>
-                    <input className="form-control" type='text' name='account_id' onChange={this.handleInputChange} value={this.state.initial_amount}></input>
                 </div>
             </form>
             <button onClick={this.createExpense} className='btn btn-primary'>Record Expense</button>

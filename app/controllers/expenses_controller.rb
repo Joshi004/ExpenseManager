@@ -14,9 +14,9 @@ class ExpensesController < ApplicationController
 
     def getExpenses()
         if(params['account_id'] == 'all')
-        render json: Expense.all
+        render json: Expense.find_by_sql('select e.*,a.name as account_name from expenses e left join accounts a on a.id=e.account_id;')
         else
-        render json: Expense.find_by('account_id': params['account_id'])
+        render json: Expense.find_by_sql("select e.*,a.name as account_name from expenses e left join accounts a on a.id=e.account_id where a.id= #{params['account_id']};")
         end
     end
     
