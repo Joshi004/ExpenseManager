@@ -74,7 +74,7 @@ class MainComponent extends React.Component {
                             <li><Link to="/expenses"> Expenses &nbsp;|&nbsp; </Link></li>
                             <li><Link to="/createExpense"> Record Expense &nbsp;|&nbsp; </Link></li>
                             <li><Link to="/accounts">&nbsp;|&nbsp; Accounts  &nbsp;|&nbsp; </Link></li>
-                            <li><div className="dropdown">
+                            <li><div className="dropdown btn btn-link">
                                 <a className="dropdown-toggle" data-toggle="dropdown">
 
                                     {this.state.selectedAccountName}
@@ -88,7 +88,7 @@ class MainComponent extends React.Component {
                         </ul>
                         <Route exact path="/home" component={AccountsComponent} />
                         <Route exact path="/accounts" render={(props) => <AccountsComponent {...props} {...this.state} />} />
-                        <Route exact path="/expenses" render={(props) => <ExpenseComponent key={this.state.selectedAccountID} {...props} {...this.state} />} />
+                        <Route exact path="/expenses" render={(props) => <ExpenseComponent  {...props} {...this.state} />} />
                         <Route exact path="/createExpense" render={(props) => <CreateExpenseComponent {...props} {...this.state} />} />
                         {/* <Route exact path = "/" component = {AccountsComponent} /> */}
                     </React.Fragment>

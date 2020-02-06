@@ -16,7 +16,9 @@ class ExpenseComponent extends Component {
         this.getAllExpenses()
     }
 
-
+    componentDidUpdate(prevProps) {
+        if(prevProps.selectedAccountID !== this.props.selectedAccountID) this.getAllExpenses()
+    }
 
     getAllExpenses() {
         console.log('Calling get Expense')
@@ -38,6 +40,18 @@ class ExpenseComponent extends Component {
              return <th key={element.field}>{element.label}</th>
            })
      }
+
+     deleteRecord = (id)=>{
+        axios.delete(urls.delete_expense+id,)
+        .then((res)=>{
+            console.log("This is delete response",res)
+            location.reload()
+        })
+     }
+
+     editExpense = ()=>{
+        console.log('This is edit expense')
+     }
  
      renderTableData(){ 
            return this.state.allExpenses?.map((record)=>{
@@ -47,6 +61,11 @@ class ExpenseComponent extends Component {
                              return<td key={record.id+maping.field}>{record[maping.field]}</td>
                          })
                      }
+                     <td className='btn-group'>
+                         <span className='deleteBtn btn btn-sm btn-danger' onClick={()=>this.deleteRecord(record.id)}>Delete </span>
+               
+                         <span  onClick={()=>this.editExpense(record.id)} className="deleteBtn btn btn-sm btn-primary">Modify</span>
+                     </td>
                  </tr>)
              })
              
@@ -58,7 +77,9 @@ class ExpenseComponent extends Component {
     <div className='tableHEader'>Expenses For {this.state.selectedAccountName}</div>
                  <table className='table table-hover'>
                     <thead>
-                         <tr>{this.renderTableHeader()}</tr>
+                         <tr>
+                             {this.renderTableHeader()}   
+                        </tr>
                     </thead>
                     <tbody>
                          {this.renderTableData()}

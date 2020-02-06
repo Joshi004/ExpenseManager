@@ -4,7 +4,8 @@ urls={
     create_account:api+ver+'/create_account',
     get_accounts:api+ver+'/get_accounts',
     get_expenses:api+ver+'/get_expenses',
-    create_expense:api+ver+'/create_expense'
+    create_expense:api+ver+'/create_expense',
+    delete_expense:api+ver+'/delete_expense/'
 }
 
 accountTableMap = [

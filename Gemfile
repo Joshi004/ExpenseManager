@@ -24,6 +24,7 @@ gem 'coffee-rails', '~> 4.2'
 #REact RAils Gems
 gem 'webpacker'
 gem 'react-rails'
+gem "font-awesome-rails"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

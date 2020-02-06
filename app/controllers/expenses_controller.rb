@@ -37,4 +37,9 @@ class ExpensesController < ApplicationController
 		puts "result is  : #{result}"
 		render json: result
 	end
+
+	def deleteExpense
+	render json: Expense.delete(params['id'])
+	end
+
 end

@@ -7,11 +7,11 @@ class CreateExpenseComponent extends Component {
     constructor(prop) {
         super(prop)
         this.state = {
-            amount: '',
-            category: '',
+            amount: '0',
+            category: 'other',
             description: '',
-            payement_method: '',
-            account_id: '',
+            payement_method: 'cash',
+            account_id: localStorage.selectedAccountID,
             allAccounts:prop.allAccounts
         }
         console.log('In Create Expense Component props recived are',this.props)
@@ -92,11 +92,13 @@ componentDidMount(){
                 </div>
                 <div className='form-group'>
                     <label>Expense Category</label>
-                    <select onChange={this.handleInputChange} className="form-control" name="category">
+                    <select defaultValue='other' value ={this.state.category}onChange={this.handleInputChange} className="form-control" name="category">
                         <option  value="clothing">Clothing</option>
                         <option  value="household">Household</option>
                         <option value="medication">Medication</option>
                         <option value="transport">Transport</option>
+                        <option value='entertainment'>Entertainment</option>
+                        <option value='other'>Other</option>
                     </select>
                 </div>
                 <div className='form-group'>
@@ -105,7 +107,7 @@ componentDidMount(){
                 </div>
                 <div className='form-group'>
                     <label>Payement Method</label>
-                    <select onChange={this.handleInputChange} className="form-control" name="payement_method">
+                    <select onChange={this.handleInputChange} value={this.state.payement_method} className="form-control" name="payement_method">
                         <option  value="cash">Cash</option>
                         <option  value="card">Card</option>
                         <option value="paytm">Paytm</option>
@@ -114,7 +116,7 @@ componentDidMount(){
                 </div>
                 <div className='form-group'>
                     <label>Add to account</label>
-                    <select onChange={this.handleInputChange} className="form-control" name="account_id">
+                    <select onChange={this.handleInputChange} value={this.state.account_id} className="form-control" name="account_id">
                         { this.renderDropdown() }
                     </select>
                 </div>
