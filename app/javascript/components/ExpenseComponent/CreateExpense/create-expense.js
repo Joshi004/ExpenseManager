@@ -39,7 +39,7 @@ class CreateExpenseComponent extends Component {
         }
 
         const config = {
-            method: 'put',
+            method: this.state.id? 'put' : 'post',
             url: this.state.id? urls.edit_expense:urls.create_expense,
             data: JSON.stringify(data),
             headers: { 'Content-type': 'application/json' }
@@ -48,6 +48,7 @@ class CreateExpenseComponent extends Component {
         axios(config)
             .then((response) => {
                 console.log('Create response is ', response)
+                this.props.history.push('/expenses')
             })
             .catch((err) => {
                 console.log("Following error response from server : ", err)
