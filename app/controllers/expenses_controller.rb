@@ -1,6 +1,6 @@
 class ExpensesController < ApplicationController
 	skip_before_action :verify_authenticity_token
-	rescue_from StandardError, :with => :render_standard_error
+	# rescue_from StandardError, :with => :render_standard_error
 
 	def render_standard_error(error)
 		puts "REcording Error *****"
@@ -21,7 +21,7 @@ class ExpensesController < ApplicationController
     end
     
     def expense_params
-		params.require(:expense).permit(:amount, :category,:account_id, :description,:payement_method,:created_at,:updated_at)
+		params.require(:expense).permit(:id, :amount, :category,:account_id, :description,:payement_method,:created_at,:updated_at)
 	end
 
 
@@ -40,6 +40,12 @@ class ExpensesController < ApplicationController
 
 	def deleteExpense
 	render json: Expense.delete(params['id'])
+	end
+
+	def editExpense
+		@expense = (expense_params)
+		render json: Expense.update(params['id'],@expense) 
+		puts "adding this #{params}"
 	end
 
 end

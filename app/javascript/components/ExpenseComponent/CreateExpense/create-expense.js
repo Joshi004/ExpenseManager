@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 import './create-expense.css'
 import axios from 'axios'
 import '../../emConstants'
@@ -29,6 +30,7 @@ class CreateExpenseComponent extends Component {
 
     createExpense = () => {
         const data = {
+            id:this.state.id,
             amount: this.state.amount,
             category: this.state.category,
             description: this.state.description,
@@ -37,8 +39,8 @@ class CreateExpenseComponent extends Component {
         }
 
         const config = {
-            method: 'post',
-            url: urls.create_expense,
+            method: 'put',
+            url: this.state.id? urls.edit_expense:urls.create_expense,
             data: JSON.stringify(data),
             headers: { 'Content-type': 'application/json' }
         }
@@ -65,6 +67,9 @@ componentDidMount(){
     if(!this.state.allAccounts){
         this.getAccounts()
     }
+    if(this.props.location.state){
+        this.setState(this.props.location.state)
+    }
 }
     getAccounts = ()=>{
         fetch(urls.get_accounts,{
@@ -82,17 +87,17 @@ componentDidMount(){
 
 
     render() {
-        console.log('Render initiated forf create comp')
+        console.log('Render initiated forf create comp',this.props)
         return (<div className='container'>
             <div className='formHeader'> Provide Expense details</div>
             <form className='form form-vertical'>
                 <div className='form-group'>
                     <label>Amount</label>
-                    <input className="form-control" type='number' name='amount' onChange={this.handleInputChange} value={this.state.name}></input>
+                    <input className="form-control" type='number' name='amount' onChange={this.handleInputChange} value={this.state.amount}></input>
                 </div>
                 <div className='form-group'>
                     <label>Expense Category</label>
-                    <select defaultValue='other' value ={this.state.category}onChange={this.handleInputChange} className="form-control" name="category">
+                    <select value ={this.state.category} onChange={this.handleInputChange} className="form-control" name="category">
                         <option  value="clothing">Clothing</option>
                         <option  value="household">Household</option>
                         <option value="medication">Medication</option>
@@ -103,7 +108,7 @@ componentDidMount(){
                 </div>
                 <div className='form-group'>
                     <label>Description</label>
-                    <input className="form-control" type='text' name='description' onChange={this.handleInputChange} value={this.state.initial_amount}></input>
+                    <input className="form-control" type='text' name='description' onChange={this.handleInputChange} value={this.state.description}></input>
                 </div>
                 <div className='form-group'>
                     <label>Payement Method</label>
@@ -126,4 +131,4 @@ componentDidMount(){
     }
 }
 
-export default CreateExpenseComponent
+export default withRouter (CreateExpenseComponent)

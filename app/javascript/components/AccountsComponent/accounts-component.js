@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import { withRouter } from 'react-router'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import  '../emConstants'
@@ -57,4 +58,4 @@ class AccountComponent extends Component{
         </div>)
     }
 }
-export default AccountComponent;
+export default withRouter(AccountComponent);

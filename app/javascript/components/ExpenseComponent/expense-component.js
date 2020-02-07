@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 import './expense-component.css'
 import axios from 'axios'
 import '../emConstants'
+import CreateExpense from './CreateExpense/create-expense'
 // import {withNavigation} from 'react-navigation'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 class ExpenseComponent extends Component {
@@ -49,8 +51,10 @@ class ExpenseComponent extends Component {
         })
      }
 
-     editExpense = ()=>{
-        console.log('This is edit expense')
+     editExpense = (record)=>{
+        console.log('This is edit expense id',record)
+        console.log(this.props.history)
+        this.props.history.push('createExpense',record)
      }
  
      renderTableData(){ 
@@ -64,9 +68,10 @@ class ExpenseComponent extends Component {
                      <td className='btn-group'>
                          <span className='deleteBtn btn btn-sm btn-danger' onClick={()=>this.deleteRecord(record.id)}>Delete </span>
                
-                         <span  onClick={()=>this.editExpense(record.id)} className="deleteBtn btn btn-sm btn-primary">Modify</span>
+                         <span  onClick={()=>this.editExpense(record)} className="deleteBtn btn btn-sm btn-primary">Modify</span>
                      </td>
-                 </tr>)
+                 </tr>
+                 )
              })
              
      }
@@ -89,4 +94,4 @@ class ExpenseComponent extends Component {
         )
         }}
 
-export default (ExpenseComponent)
+export default withRouter(ExpenseComponent)

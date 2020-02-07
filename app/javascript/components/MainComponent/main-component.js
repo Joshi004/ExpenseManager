@@ -6,6 +6,7 @@ import ExpenseComponent from '../ExpenseComponent/expense-component'
 import NavComponent from '../NavComponent/nav-component'
 import CreateExpenseComponent from '../ExpenseComponent/CreateExpense/create-expense'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { withRouter } from 'react-router'
 class MainComponent extends React.Component {
     constructor(props) {
         super(props)
@@ -64,10 +65,10 @@ class MainComponent extends React.Component {
     render() {
         console.log("Navigation in parent", this.props)
         return (
-            <div className='mainDiv' style={{ background: '../../../assets/images/image01.png' }} className=''>
-                <NavComponent></NavComponent>
+            // <div className='mainDiv' style={{ background: '../../../assets/images/image01.png' }} className=''>
+            //     <NavComponent></NavComponent>
 
-                <Router>
+                <Router history={History}>
                     <React.Fragment>
                         <ul style={{ flexDirection: "row-reverse" }} className="nav navbar-nav">
                             <li className="active"><Link to="/">Home &nbsp;&nbsp; </Link></li>
@@ -90,6 +91,7 @@ class MainComponent extends React.Component {
                         <Route exact path="/accounts" render={(props) => <AccountsComponent {...props} {...this.state} />} />
                         <Route exact path="/expenses" render={(props) => <ExpenseComponent  {...props} {...this.state} />} />
                         <Route exact path="/createExpense" render={(props) => <CreateExpenseComponent {...props} {...this.state} />} />
+                        <Route exact path="/createExpense:/id" render={(props) => <CreateExpenseComponent {...props} {...this.state} />} />
                         {/* <Route exact path = "/" component = {AccountsComponent} /> */}
                     </React.Fragment>
                 </Router>
@@ -98,9 +100,9 @@ class MainComponent extends React.Component {
 
 
 
-            </div>
+            // </div>
         )
     }
 }
 
-export default MainComponent
+export default (MainComponent)

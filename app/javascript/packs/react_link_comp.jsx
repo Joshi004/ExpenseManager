@@ -15,6 +15,6 @@ import MainComponent from '../components/MainComponent/main-component'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <MainComponent></MainComponent>,document.body.appendChild(document.createElement('div'))
+    <MainComponent ></MainComponent>,document.body.appendChild(document.createElement('div'))
   )
 })
