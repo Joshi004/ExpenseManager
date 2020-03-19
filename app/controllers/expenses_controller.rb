@@ -21,19 +21,14 @@ class ExpensesController < ApplicationController
     end
     
     def expense_params
-		params.require(:expense).permit(:id, :amount, :category,:account_id, :description,:payement_method,:created_at,:updated_at)
+		# params.require(:expense).permit(:id, :amount, :category,:account_id, :description,:payement_method,:created_at,:updated_at)
+		return {'id' => params['id'], 'amount' => params['amount'], 'category' => params['category'], 'description' => params['description'], 'payement_method' => params['payement_method'], 'account_id' => params['account_id']}
 	end
 
 
     def createExpense()
 		@expense = Expense.new(expense_params)
-		# begin
 		result = @expense.save!
-
-		# rescue
-
-		# render json: {error: 'There was an error saving the account'}
-		# end
 		puts "result is  : #{result}"
 		render json: result
 	end

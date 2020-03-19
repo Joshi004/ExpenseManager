@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20200130051456) do
 
-  create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.text     "details",        limit: 65535
     t.float    "initial_amount", limit: 24
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20200130051456) do
     t.index ["name"], name: "index_accounts_on_name", unique: true, using: :btree
   end
 
-  create_table "expenses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "expenses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.float    "amount",          limit: 24
     t.string   "category"
     t.text     "description",     limit: 65535

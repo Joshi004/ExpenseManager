@@ -14,8 +14,8 @@
     encoding: utf8
     pool: 5
     username: root
-    password: password_01
-    host: mysql_container_01
+    password: password01
+    host: localhost 
 
   development:
     <<: *default

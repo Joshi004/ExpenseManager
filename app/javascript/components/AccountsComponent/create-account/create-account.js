@@ -24,7 +24,7 @@ class CreateAccount extends Component{
     }
 
     createAccount  = ()=>{
-        console.log("Create Account Called")
+        console.log("Create Account Called with ",{account_id:this.state.name+'_01',name:this.state.name, details:this.state.details, initial_amount:this.state.initial_amount, created_at:"",updated_at:""})
         fetch(urls.create_account,{
             method:'post',
             body:JSON.stringify({account_id:this.state.name+'_01',name:this.state.name, details:this.state.details, initial_amount:this.state.initial_amount, created_at:"",updated_at:""}),
@@ -34,7 +34,7 @@ class CreateAccount extends Component{
           return response.json();
         })
         .then((myJson) => {
-            location.reload();
+            // location.reload();
         }).catch((e)=>{
             console.log("Error encountered while fetching",e)
         });

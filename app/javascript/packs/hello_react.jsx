@@ -5,17 +5,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import $ from'jquery';
-// import Popper from 'popper.js';
-import'bootstrap/dist/js/bootstrap.bundle.min';
 
-import MainComponent from '../components/MainComponent/main-component'
+const Hello = props => (
+  <div>Hello {props.name}!</div>
+)
 
+Hello.defaultProps = {
+  name: 'David'
+}
+
+Hello.propTypes = {
+  name: PropTypes.string
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("In react")
   ReactDOM.render(
-    <MainComponent ></MainComponent>,document.body.appendChild(document.createElement('div'))
+    <Hello name="React" />,
+    document.body.appendChild(document.createElement('div')),
   )
 })

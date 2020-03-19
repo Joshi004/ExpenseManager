@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
 	end
 
 	def account_params
-		params.require(:account).permit(:account_id, :name, :details,:initial_amount,:created_at,:updated_at)
+		return {name:params[:name],initial_amount:params[:initial_amount],details:params[:details]}
 	end
 	
 
@@ -14,15 +14,15 @@ class AccountsController < ApplicationController
 	end
 
 	def createAccount()
-		print 'Create Account Invoked for account :- ',params['name']
-		@account = Account.new(account_params)
-		begin
-			Account.create(account_params())
-		rescue
-
-			render json: {error: 'There was an error saving the account'}
-		end
-		render json: @account
+		p params
+		p params.keys
+		p 'Create Account Invoked for account :- ',params['name']
+		err_flag=0
+			a = account_params
+			p a
+		@account = Account.new(a)
+			@account.save!
+			render json: @account
 	end
 
 
