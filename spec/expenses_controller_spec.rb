@@ -29,6 +29,18 @@ RSpec.describe "app/controllers/ExpensesController", :type => :request do
     expect(response.status).to eq(200)
   end
 
+  it "It Returns status 422 for unknown account ID" do
+    obj = {
+      'amount' => 243,
+      'category' => "Clothing", 
+      'description' => "Shirts ", 
+      'payement_method' => "Cash", 
+      'account_id' => 55
+    }
+    post "/api/v1/create_expense",:params=>obj
+    expect(response.status).to eq(422)
+  end
+
 
   it "It Should edit the exoense with id 1 and return code 200" do
     obj = {
