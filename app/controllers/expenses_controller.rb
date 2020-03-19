@@ -34,7 +34,10 @@ class ExpensesController < ApplicationController
 	end
 
 	def deleteExpense
-	render json: Expense.delete(params['id'])
+		expense = Expense.find(params['id'])
+		expense.delete
+		result  = expense.save!
+		render json: result
 	end
 
 	def editExpense

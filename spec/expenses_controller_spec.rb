@@ -66,4 +66,16 @@ RSpec.describe "app/controllers/ExpensesController", :type => :request do
     put "/api/v1/edit_expense",:params=>obj
     expect(response.status).to eq(404)
   end
+
+  it "returns ok and a 200 for a successful delete." do
+    delete '/api/v1/delete_expense/1'
+    expect(response.status).to eq(200)
+  end
+ 
+  it "returns ok and a 404 for a invalid expense ID." do
+    delete '/api/v1/delete_expense/1111'
+    expect(response.status).to eq(404)
+  end
+
+
 end
