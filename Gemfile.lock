@@ -87,7 +87,8 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
-    puma (3.12.2)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     rack (2.1.2)
     rack-proxy (0.6.5)
       rack
@@ -198,7 +199,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   mysql2 (>= 0.3.18, < 0.6.0)
-  puma (~> 3.0)
+  puma (~> 4.3)
   rails (~> 5.0.7, >= 5.0.7.2)
   react-rails
   rspec
